@@ -28,9 +28,10 @@ launch_xvfb() {
     local screen=${XVFB_SCREEN:-0}
     local resolution=${XVFB_RESOLUTION:-1280x960x24}
     local timeout=${XVFB_TIMEOUT:-5}
+    local opt="-nolisten tcp"
 
     # Start and wait for either Xvfb to be fully up or we hit the timeout.
-    Xvfb ${DISPLAY} -screen ${screen} ${resolution} &
+    Xvfb ${DISPLAY} -screen ${screen} ${resolution} ${opt} &
     local loopCount=0
     until xdpyinfo -display ${DISPLAY} > /dev/null 2>&1
     do
@@ -48,7 +49,7 @@ launch_window_manager() {
     local timeout=${XVFB_TIMEOUT:-5}
 
     # Start and wait for either fluxbox to be fully up or we hit the timeout.
-    fluxbox &
+    fluxbox -display ${DISPLAY} &
     local loopCount=0
     until wmctrl -m > /dev/null 2>&1
     do

@@ -16,4 +16,7 @@ RUN useradd apps \
 
 COPY bootstrap.sh /
 
+RUN mkdir /tmp/.X11-unix \
+    && chmod 1777 /tmp/.X11-unix
+
 CMD '/bootstrap.sh'

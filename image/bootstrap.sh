@@ -28,7 +28,7 @@ launch_xvfb() {
     local screen=${XVFB_SCREEN:-0}
     local resolution=${XVFB_RESOLUTION:-1280x960x24}
     local timeout=${XVFB_TIMEOUT:-5}
-    local opt="-nolisten tcp"
+    local opt="-ac -once -nolisten tcp -noreset"
 
     # Start and wait for either Xvfb to be fully up or we hit the timeout.
     Xvfb ${DISPLAY} -screen ${screen} ${resolution} ${opt} &

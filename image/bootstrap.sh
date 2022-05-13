@@ -68,6 +68,7 @@ launch_window_manager() {
 launch_chrome() {
 
     # Start chrome async.
+    mkdir -p ~/.config/google-chrome
     touch ~/.config/google-chrome/First\ Run
     google-chrome --nosandbox --no-sandbox --disable-gpu --user-data-dir --start-maximized ${GO_SITE} &
         

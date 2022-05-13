@@ -1,4 +1,7 @@
-docker rm chrome-ct-$1 &2>1 > /dev/null
+
+docker kill chrome-ct-$1
+
+docker rm chrome-ct-$1
 
 docker run \
   --mount type=tmpfs,destination=/root/app/ \

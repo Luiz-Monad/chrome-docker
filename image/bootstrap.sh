@@ -7,6 +7,8 @@ main() {
     launch_xvfb
     log_i "Starting window manager..."
     launch_window_manager
+    log_i "Starting Chrome..."
+    launch_chrome
     log_i "Starting VNC server..."
     run_vnc_server
 }
@@ -48,11 +50,6 @@ launch_xvfb() {
 launch_window_manager() {
     local timeout=${XVFB_TIMEOUT:-5}
 
-    # Configure startup environment
-    mkdir ~/.fluxbox
-    echo 'google-chrome --nosandbox --no-sandbox --disable-gpu --user-data-dir --start-maximized ${GO_SITE} ' > ~/.fluxbox/startup
-    chmod +x ~/.fluxbox/startup
-
     # Start and wait for either fluxbox to be fully up or we hit the timeout.
     fluxbox -display ${DISPLAY} &
     local loopCount=0
@@ -66,6 +63,13 @@ launch_window_manager() {
             exit 1
         fi
     done
+}
+
+launch_chrome() {
+
+    # Start chrome async.
+    google-chrome --nosandbox --no-sandbox --disable-gpu --user-data-dir --start-maximized ${GO_SITE} &
+        
 }
 
 run_vnc_server() {

@@ -48,6 +48,10 @@ launch_xvfb() {
 launch_window_manager() {
     local timeout=${XVFB_TIMEOUT:-5}
 
+    # Configure startup environment
+    echo 'google-chrome --nosandbox --no-sandbox --disable-gpu --user-data-dir --start-maximized ${GO_SITE} ' > ~/.fluxbox/startup
+    chmod +x ~/.fluxbox/startup
+
     # Start and wait for either fluxbox to be fully up or we hit the timeout.
     fluxbox -display ${DISPLAY} &
     local loopCount=0

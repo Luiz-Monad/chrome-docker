@@ -1,3 +1,5 @@
+docker rm chrome-ct-$1 &2>1 > /dev/null
+
 docker run \
   --mount type=tmpfs,destination=/root/app/ \
   --shm-size=256m \

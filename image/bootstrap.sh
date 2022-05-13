@@ -49,6 +49,7 @@ launch_window_manager() {
     local timeout=${XVFB_TIMEOUT:-5}
 
     # Configure startup environment
+    mkdir ~/.fluxbox
     echo 'google-chrome --nosandbox --no-sandbox --disable-gpu --user-data-dir --start-maximized ${GO_SITE} ' > ~/.fluxbox/startup
     chmod +x ~/.fluxbox/startup
 
